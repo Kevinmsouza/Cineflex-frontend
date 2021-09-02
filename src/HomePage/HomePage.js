@@ -6,7 +6,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 
-export default function Home() {
+export default function HomePage() {
     const [movies, setMovies] = useState(null);
     useEffect(() => {
         axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/movies")

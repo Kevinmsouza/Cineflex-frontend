@@ -2,10 +2,10 @@ import "./css/reset.css";
 import "./css/style.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./Header/Header";
-import Home from "./Home/Home";
-import Sessions from "./Sessions/Sessions";
-import Session from "./Session/Session";
-import Success from "./Success/Success";
+import HomePage from "./HomePage/HomePage";
+import SessionsPage from "./SessionsPage/SessionsPage";
+import SessionPage from "./SessionPage/SessionPage";
+import SuccessPage from "./SuccessPage/SuccessPage";
 
 export default function App() {
     return (
@@ -13,16 +13,16 @@ export default function App() {
             <Header />
             <Switch>
                 <Route path="/" exact>
-                    <Home />
+                    <HomePage />
                 </Route>
                 <Route path="/filme/:filmId" exact>
-                    <Sessions />
+                    <SessionsPage />
                 </Route>
                 <Route path="/sessao/:sessionId" exact>
-                    <Session />
+                    <SessionPage />
                 </Route>
                 <Route path="/sucesso" exact>
-                    <Success />
+                    <SuccessPage />
                 </Route>
             </Switch>
         </BrowserRouter>

@@ -1,6 +1,6 @@
 import "./style.css";
 
-export default function Session() {
+export default function SessionPage() {
     return(
         <article>Session</article>
     )
