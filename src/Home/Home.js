@@ -21,6 +21,7 @@ export default function Home() {
             <ul className="movie-box" >
                 {movies.map((movie) => (
                 <MoviePoster
+                    id={movie.id}
                     src={movie.posterURL}
                     alt={`Poster de ${movie.title}`}
                 />))}
