@@ -3,7 +3,7 @@ import "./css/style.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./Header/Header";
 import Home from "./Home/Home";
-import Movie from "./Movie/Movie";
+import Sessions from "./Sessions/Sessions";
 import Session from "./Session/Session";
 import Success from "./Success/Success";
 
@@ -16,7 +16,7 @@ export default function App() {
                     <Home />
                 </Route>
                 <Route path="/filme/:filmId" exact>
-                    <Movie />
+                    <Sessions />
                 </Route>
                 <Route path="/sessao/:sessionId" exact>
                     <Session />
