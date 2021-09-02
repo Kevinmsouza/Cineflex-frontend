@@ -1,19 +1,24 @@
 import "./style.css";
 import Title from "../others/Title/Title";
 import MoviePoster from "./MoviePoster/MoviePoster";
+import Loading from "../others/Loading/Loading";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
 
 export default function Home() {
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState(null);
     useEffect(() => {
         axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/movies")
         .then((response) => setMovies(response.data))
         .catch((error) => alert(error))
     }, [])
 
-    if(movies)
+    if(movies === null){
+        return (
+            <Loading />
+        )
+    }
 
     return (
         <main className="home" >

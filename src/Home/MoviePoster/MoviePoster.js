@@ -8,6 +8,5 @@ export default function MoviePoster({ id, src, alt }) {
                 <img src={src} alt={alt} />
             </li>
         </Link>
-
     )
 }
