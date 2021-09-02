@@ -2,10 +2,10 @@ import "./css/reset.css";
 import "./css/style.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./Header/Header";
-import Home from "./Home";
-import Movie from "./Movie";
-import Session from "./Session";
-import Success from "./Success";
+import Home from "./Home/Home";
+import Movie from "./Movie/Movie";
+import Session from "./Session/Session";
+import Success from "./Success/Success";
 
 export default function App() {
     return (
