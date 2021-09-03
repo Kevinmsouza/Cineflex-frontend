@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Day from "./Day/Day";
 import { useParams } from "react-router-dom";
 import Loading from "../others/Loading/Loading";
-import SessionPage from "../SessionPage/SessionPage";
+import Footer from "./Footer/Footer";
 
 export default function SessionsPage() {
     const { filmId } = useParams();
@@ -35,6 +35,11 @@ export default function SessionsPage() {
                     />
                 ))}
             </section>
+            <Footer
+                posterURL={session.posterURL}
+                movieTitle={session.title}
+                id={session.id}
+            />
         </article>
     )
 }
