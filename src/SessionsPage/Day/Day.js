@@ -10,6 +10,7 @@ export default function Day({ weekday, date, showtimes}) {
                     <Showtime
                         name={showtime.name}
                         id={showtime.id}
+                        key={showtime.id}
                     />))}
                 
             </div>
