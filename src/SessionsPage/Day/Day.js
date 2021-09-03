@@ -1,5 +1,5 @@
 import "./style.css"
-import Showtime from "../Showtime/Showtime"
+import Showtime from "./Showtime/Showtime"
 
 export default function Day({ weekday, date, showtimes}) {
     return (
@@ -12,7 +12,6 @@ export default function Day({ weekday, date, showtimes}) {
                         id={showtime.id}
                         key={showtime.id}
                     />))}
-                
             </div>
         </div>
     )
