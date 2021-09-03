@@ -1,6 +1,9 @@
 *{
     box-sizing: border-box;
 }
+body{
+    color: #293845;
+}
 a{
     color: inherit;
     text-decoration: none;
