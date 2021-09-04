@@ -1,0 +1,11 @@
+.seats-box{
+    margin-top: -20px;
+    width: 330px;
+    margin: 0 auto;
+}
+
+@media (max-width: 330px) {
+    .seats-box{
+        width: 100vw;
+    }
+}
