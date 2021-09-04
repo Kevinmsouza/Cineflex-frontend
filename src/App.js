@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./Header/Header";
 import HomePage from "./HomePage/HomePage";
 import SessionsPage from "./SessionsPage/SessionsPage";
-import SessionPage from "./SessionPage/SessionPage";
+import SeatsPage from "./SeatsPage/SeatsPage";
 import SuccessPage from "./SuccessPage/SuccessPage";
 
 export default function App() {
@@ -18,8 +18,8 @@ export default function App() {
                 <Route path="/filme/:filmId" exact>
                     <SessionsPage />
                 </Route>
-                <Route path="/sessao/:sessionId" exact>
-                    <SessionPage />
+                <Route path="/assentos/:assentosId" exact>
+                    <SeatsPage />
                 </Route>
                 <Route path="/sucesso" exact>
                     <SuccessPage />
