@@ -7,7 +7,10 @@ footer{
     border: 1px solid #9EADBA;
     display: flex;
     font-size: 26px;
-    line-height: 30px;   
+    line-height: 30px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
 footer .movie-poster{
     background-color: #fff;

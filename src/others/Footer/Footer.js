@@ -1,5 +1,5 @@
 import "./style.css"
-import MoviePoster from "../../HomePage/MoviePoster/MoviePoster"
+import MoviePoster from "../MoviePoster/MoviePoster"
 
 
 export default function Footer({ posterURL, movieTitle, id, weekday, showtime}) {

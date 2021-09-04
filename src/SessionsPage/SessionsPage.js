@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Day from "./Day/Day";
 import { useParams } from "react-router-dom";
 import Loading from "../others/Loading/Loading";
-import Footer from "./Footer/Footer";
+import Footer from "../others/Footer/Footer";
 
 export default function SessionsPage() {
     const { filmId } = useParams();

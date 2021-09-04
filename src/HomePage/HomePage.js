@@ -1,6 +1,6 @@
 import "./style.css";
 import Title from "../others/Title/Title";
-import MoviePoster from "./MoviePoster/MoviePoster";
+import MoviePoster from "../others/MoviePoster/MoviePoster";
 import Loading from "../others/Loading/Loading";
 import axios from "axios";
 import { useState, useEffect } from "react";
