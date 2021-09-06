@@ -7,6 +7,7 @@ import Loading from "../others/Loading/Loading";
 import Title from "../others/Title/Title";
 import Seat from "./Seat/Seat";
 import Glossary from "./Glossary/Glossary";
+import Form from "./Form/Form";
 
 export default function SeatsPage() {
     const [seats, setSeats] = useState(null);
@@ -16,10 +17,7 @@ export default function SeatsPage() {
             .then((response) => setSeats(response.data))
             .catch((error) => alert(error))
     }, [])
-    console.log(seats)
     const [selectedSeats, setSelectedSeats] = useState(new Array(50))
-    console.log(selectedSeats)
-
     function toggleSelect(seatNumber) {
         let newSelectedSeats = [...selectedSeats]
         newSelectedSeats[seatNumber - 1] = !newSelectedSeats[seatNumber - 1]
@@ -44,6 +42,8 @@ export default function SeatsPage() {
                     />))}
                 <Glossary />
             </section>
+            <Form title="nome" />
+            <Form title="CPF" />
             <Footer
                 posterURL={seats.movie.posterURL}
                 movieTitle={seats.movie.title}
