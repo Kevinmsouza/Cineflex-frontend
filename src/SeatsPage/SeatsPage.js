@@ -22,19 +22,21 @@ export default function SeatsPage({ setReservationData }) {
     let history = useHistory();
     const [nameValue, setNameValue] = useState("");
     const [CPFValue, SetCPFValue] = useState("");
-    const [selectedSeats, setSelectedSeats] = useState(new Array(50));
-    const selectedSeatsIDs = selectedSeats.map((seat, i) => seat ? seatsDATA.seats[i].id : -1)
-        .filter((seatIndex) => seatIndex >= 0 ? true : false);
-   
-    function toggleSelect(seatNumber) {
+    const [selectedSeats, setSelectedSeats] = useState([]);
+    
+    function toggleSelect(seatId) {
         let newSelectedSeats = [...selectedSeats];
-        newSelectedSeats[seatNumber - 1] = !newSelectedSeats[seatNumber - 1];
+        if(newSelectedSeats.includes(seatId)){
+            newSelectedSeats.splice(newSelectedSeats.indexOf(seatId), 1);
+        }else{
+            newSelectedSeats.push(seatId);
+        }
         setSelectedSeats(newSelectedSeats);
     }
     function finish() {
         if(verifyInfo()){
             setReservationData({
-                ids: selectedSeatsIDs,
+                ids: selectedSeats,
                 name: nameValue,
                 cpf: CPFValue,
                 movie: seatsDATA.movie.title,
@@ -45,7 +47,7 @@ export default function SeatsPage({ setReservationData }) {
         }
     }
     function verifyInfo() {
-        if (nameValue && CPFValue && selectedSeatsIDs[0] !== undefined) {
+        if (nameValue && CPFValue && selectedSeats[0] !== undefined) {
             return true;
         }
         return false;
@@ -64,8 +66,9 @@ export default function SeatsPage({ setReservationData }) {
                         number={seat.name}
                         isAvailable={seat.isAvailable}
                         key={seat.id}
+                        id={seat.id}
                         toggleSelect={toggleSelect}
-                        isSelected={selectedSeats[i]}
+                        isSelected={selectedSeats.includes(seat.id)}
                     />))}
                 <Glossary />
             </section>
