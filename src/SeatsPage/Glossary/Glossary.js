@@ -8,7 +8,7 @@ export default function Glossary() {
                 <Seat
                     number=""
                     isAvailable={true}
-                    toggleSelect={(a) => { }}
+                    toggleSelect={() => { }}
                     isSelected={true}
                 />
                 Selecionado
@@ -17,7 +17,7 @@ export default function Glossary() {
                 <Seat
                     number=""
                     isAvailable={true}
-                    toggleSelect={(a) => { }}
+                    toggleSelect={() => { }}
                     isSelected={false}
                 />
                 Disponível
@@ -26,7 +26,7 @@ export default function Glossary() {
                 <Seat
                     number=""
                     isAvailable={false}
-                    toggleSelect={(a) => { }}
+                    toggleSelect={() => { }}
                     isSelected={false}
                 />
                 Indisponível
