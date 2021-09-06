@@ -10,8 +10,10 @@
     width: 327px;
     height: 51px;
     margin-top: 1px;
+    font-size: 18px;
+    padding: 0 18px;
 }
 .form input::placeholder{
     color: #AFAFAF;
-    padding: 0 18px
+    font-size: 18px;
 }

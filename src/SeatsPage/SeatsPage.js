@@ -10,6 +10,8 @@ import Glossary from "./Glossary/Glossary";
 import Form from "./Form/Form";
 
 export default function SeatsPage() {
+    const [nameValue, setNameValue] = useState("");
+    const [CPFValue, SetCPFValue] = useState("");
     const [seats, setSeats] = useState(null);
     const { assentosId } = useParams()
     useEffect(() => {
@@ -42,14 +44,15 @@ export default function SeatsPage() {
                     />))}
                 <Glossary />
             </section>
-            <Form title="nome" />
-            <Form title="CPF" />
+            <Form title="nome" value={nameValue} attValue={(event) => setNameValue(event.target.value)} />
+            <Form title="CPF" value={CPFValue} attValue={(event) => SetCPFValue(event.target.value)} />
             <Footer
                 posterURL={seats.movie.posterURL}
                 movieTitle={seats.movie.title}
                 id={seats.movie.id}
                 weekday={seats.day.weekday}
                 showtime={seats.name}
+                
             />
         </article>
     )
