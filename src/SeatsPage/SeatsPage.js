@@ -11,21 +11,21 @@ import Form from "./Form/Form";
 import Button from "../others/Button/Button";
 
 export default function SeatsPage({ setReservationData }) {
-    let history = useHistory();
-    const [nameValue, setNameValue] = useState("");
-    const [CPFValue, SetCPFValue] = useState("");
-    const [seats, setSeats] = useState(null);
+    const [seatsDATA, setSeatsDATA] = useState(null);
     const { assentosId } = useParams()
     useEffect(() => {
         axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/showtimes/${assentosId}/seats`)
-            .then((response) => setSeats(response.data))
+            .then((response) => setSeatsDATA(response.data))
             .catch((error) => alert(error))
     }, [])
-    // console.log(seats)
+    // console.log(seatsDATA)
+    let history = useHistory();
+    const [nameValue, setNameValue] = useState("");
+    const [CPFValue, SetCPFValue] = useState("");
     const [selectedSeats, setSelectedSeats] = useState(new Array(50));
-    const selectedSeatsIDs = selectedSeats.map((seat, i) => seat ? seats.seats[i].id : -1)
+    const selectedSeatsIDs = selectedSeats.map((seat, i) => seat ? seatsDATA.seats[i].id : -1)
         .filter((seatIndex) => seatIndex >= 0 ? true : false);
-    // console.log(selectedSeatsIDs)    
+   
     function toggleSelect(seatNumber) {
         let newSelectedSeats = [...selectedSeats];
         newSelectedSeats[seatNumber - 1] = !newSelectedSeats[seatNumber - 1];
@@ -37,20 +37,20 @@ export default function SeatsPage({ setReservationData }) {
                 ids: selectedSeatsIDs,
                 name: nameValue,
                 cpf: CPFValue,
-                movie: seats.movie.title,
-                date: seats.day.date,
-                showtime: seats.name
+                movie: seatsDATA.movie.title,
+                date: seatsDATA.day.date,
+                showtime: seatsDATA.name
             });
             history.push("/sucesso");
         }
     }
     function verifyInfo() {
-        if (nameValue && CPFValue && selectedSeatsIDs[0] != undefined) {
+        if (nameValue && CPFValue && selectedSeatsIDs[0] !== undefined) {
             return true;
         }
         return false;
     }
-    if (seats === null) {
+    if (seatsDATA === null) {
         return (
             <Loading />
         )
@@ -59,7 +59,7 @@ export default function SeatsPage({ setReservationData }) {
         <article className="seats-page" >
             <Title text="Selecione o(s) assento(s)" />
             <section className="seats-box">
-                {seats.seats.map((seat, i) => (
+                {seatsDATA.seats.map((seat, i) => (
                     <Seat
                         number={seat.name}
                         isAvailable={seat.isAvailable}
@@ -73,11 +73,11 @@ export default function SeatsPage({ setReservationData }) {
             <Form title="CPF" value={CPFValue} attValue={(event) => SetCPFValue(event.target.value)} />
             <Button onclick={finish} text="Reservar assento(s)" />
             <Footer
-                posterURL={seats.movie.posterURL}
-                movieTitle={seats.movie.title}
-                id={seats.movie.id}
-                weekday={seats.day.weekday}
-                showtime={seats.name}
+                posterURL={seatsDATA.movie.posterURL}
+                movieTitle={seatsDATA.movie.title}
+                id={seatsDATA.movie.id}
+                weekday={seatsDATA.day.weekday}
+                showtime={seatsDATA.name}
             />
         </article>
     )
