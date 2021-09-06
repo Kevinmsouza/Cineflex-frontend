@@ -33,7 +33,7 @@ export default function SuccessPage({ reservationData }) {
                         <p>{reservationData.date} {reservationData.showtime}</p>
                     </Text>
                     <Text title="Ingressos">
-                        {reservationData.ids.map((id) => <p key={id} >{`Assento ${Number(id) % 50}`}</p>)}
+                        {reservationData.ids.map((id) => <p key={id} >{`Assento ${(((id - 1) % 50) + 1)}`}</p>)}
                     </Text>
                     <Text title="Comprador">
                         <p>Nome: {reservationData.name}</p>
@@ -41,18 +41,18 @@ export default function SuccessPage({ reservationData }) {
                     </Text>
                 </section>
                 <Link to="/">
-                    <Button onclick={()=>{}} text="Voltar pra Home" />
+                    <Button onclick={() => { }} text="Voltar pra Home" />
                 </Link>
             </article>
         )
     } else {
         return (
-            <>
+            <article className="success-page" >
                 <Title text="Ocorreu um erro, tente mais tarde!" />
                 <Link to="/">
-                    <Button onclick={()=>{}} text="Voltar pra Home" />
+                    <Button onclick={() => { }} text="Voltar pra Home" />
                 </Link>
-            </>
+            </article>
         )
     }
 }
