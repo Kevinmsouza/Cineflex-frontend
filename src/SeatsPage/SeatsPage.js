@@ -1,15 +1,17 @@
 import "./style.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import Footer from "../others/Footer/Footer";
 import Loading from "../others/Loading/Loading";
 import Title from "../others/Title/Title";
 import Seat from "./Seat/Seat";
 import Glossary from "./Glossary/Glossary";
 import Form from "./Form/Form";
+import Button from "../others/Button/Button";
 
-export default function SeatsPage({setReservationData}) {
+export default function SeatsPage({ setReservationData }) {
+    let history = useHistory();
     const [nameValue, setNameValue] = useState("");
     const [CPFValue, SetCPFValue] = useState("");
     const [seats, setSeats] = useState(null);
@@ -19,24 +21,32 @@ export default function SeatsPage({setReservationData}) {
             .then((response) => setSeats(response.data))
             .catch((error) => alert(error))
     }, [])
-    const [selectedSeats, setSelectedSeats] = useState(new Array(50))
-    const selectedSeatsIDs = selectedSeats.map((seat, i) => seat ? i + 1 : -1)
-    .filter((seatIndex) => seatIndex > 0 ? true : false);
+    // console.log(seats)
+    const [selectedSeats, setSelectedSeats] = useState(new Array(50));
+    const selectedSeatsIDs = selectedSeats.map((seat, i) => seat ? seats.seats[i].id : -1)
+        .filter((seatIndex) => seatIndex >= 0 ? true : false);
+    // console.log(selectedSeatsIDs)    
     function toggleSelect(seatNumber) {
         let newSelectedSeats = [...selectedSeats];
         newSelectedSeats[seatNumber - 1] = !newSelectedSeats[seatNumber - 1];
         setSelectedSeats(newSelectedSeats);
     }
-    function finish(){
-        setReservationData({
-            ids: selectedSeatsIDs,
-            name: {nameValue},
-            cpf: {CPFValue}
-        })
+    function finish() {
+        if(verifyInfo()){
+            setReservationData({
+                ids: selectedSeatsIDs,
+                name: nameValue,
+                cpf: CPFValue,
+                movie: seats.movie.title,
+                date: seats.day.date,
+                showtime: seats.name
+            });
+            history.push("/sucesso");
+        }
     }
-    function verifyInfo(){
-        if(nameValue && CPFValue && selectedSeatsIDs[0] != undefined){
-            return true
+    function verifyInfo() {
+        if (nameValue && CPFValue && selectedSeatsIDs[0] != undefined) {
+            return true;
         }
         return false;
     }
@@ -61,9 +71,7 @@ export default function SeatsPage({setReservationData}) {
             </section>
             <Form title="nome" value={nameValue} attValue={(event) => setNameValue(event.target.value)} />
             <Form title="CPF" value={CPFValue} attValue={(event) => SetCPFValue(event.target.value)} />
-            <Link to={verifyInfo() ? "/sucesso" : `/assentos/${seats.id}`}>
-                <button className="finish" onClick={finish} >Reservar assento(s)</button>
-            </Link>
+            <Button onclick={finish} text="Reservar assento(s)" />
             <Footer
                 posterURL={seats.movie.posterURL}
                 movieTitle={seats.movie.title}

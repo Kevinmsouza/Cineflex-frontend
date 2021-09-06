@@ -12,7 +12,10 @@ export default function App() {
     const [reservationData, setReservationData] = useState({
         ids: [],
 	    name: "",
-	    cpf: ""
+	    cpf: "",
+        movie: "",
+        date: "",
+        showtime: ""
     })
     return (
         <BrowserRouter>
