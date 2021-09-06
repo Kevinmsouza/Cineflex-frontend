@@ -1,7 +1,6 @@
 import "./style.css"
 
 export default function Form({title, value, attValue }) {
-    console.log(value)
     return(
         <div className="form">
             {`${title[0].toUpperCase() + title.slice(1)} do comprador:`}
